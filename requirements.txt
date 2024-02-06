@@ -6,7 +6,7 @@ dnspython
 ffmpeg-python
 gitpython
 hachoir
-heroku==0.1.4
+heroku3
 motor
 pillow
 psutil
