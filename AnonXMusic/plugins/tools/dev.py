@@ -29,18 +29,7 @@ async def edit_or_reply(msg: Message, **kwargs):
     await func(**{k: v for k, v in kwargs.items() if k in spec})
 
 
-@app.on_edited_message(
-    filters.command("eval")
-    & filters.user(SUDOERS)
-    & ~filters.forwarded
-    & ~filters.via_bot
-)
-@app.on_message(
-    filters.command("eval")
-    & filters.user(SUDOERS)
-    & ~filters.forwarded
-    & ~filters.via_bot
-)
+@app.on_message(filters.command(["eval"]) & SUDOERS)
 async def executor(client: app, message: Message):
     if len(message.command) < 2:
         return await edit_or_reply(message, text="<b>ᴡʜᴀᴛ ʏᴏᴜ ᴡᴀɴɴᴀ ᴇxᴇᴄᴜᴛᴇ ʙᴀʙʏ ?</b>")
@@ -139,18 +128,7 @@ async def forceclose_command(_, CallbackQuery):
         return
 
 
-@app.on_edited_message(
-    filters.command("sh")
-    & filters.user(SUDOERS)
-    & ~filters.forwarded
-    & ~filters.via_bot
-)
-@app.on_message(
-    filters.command("sh")
-    & filters.user(SUDOERS)
-    & ~filters.forwarded
-    & ~filters.via_bot
-)
+@app.on_message(filters.command(["sh"]) & SUDOERS)
 async def shellrunner(_, message: Message):
     if len(message.command) < 2:
         return await edit_or_reply(message, text="<b>ᴇxᴀᴍᴩʟᴇ :</b>\n/sh git pull")
